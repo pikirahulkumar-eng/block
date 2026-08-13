@@ -41,7 +41,7 @@ jobs:
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
         # This compiles the Android project into an APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --info
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
