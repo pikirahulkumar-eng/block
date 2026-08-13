@@ -38,6 +38,8 @@ jobs:
 
       - name: Build APK (Assemble Release)
         working-directory: block_native/android
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
         # This compiles the Android project into an APK
         run: ./gradlew assembleRelease
 
