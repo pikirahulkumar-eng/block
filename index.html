@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Block Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="title-score">
+                <div class="logo-container">
+                    <h1 class="logo">BLOCKS</h1>
+                    <button id="sound-btn" class="icon-btn">🔊</button>
+                </div>
+                <div class="scores-container">
+                    <div class="score-card">
+                        <span class="score-label">BEST</span>
+                        <span id="best-score-display">0</span>
+                    </div>
+                    <div class="score-card highlight">
+                        <span class="score-label">SCORE</span>
+                        <span id="score-display">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Board (10x10) -->
+        <div class="board-container">
+            <div id="game-board"></div>
+        </div>
+
+        <!-- Shapes Tray (Bottom) -->
+        <div class="tray-container">
+            <div class="shape-slot" id="slot-0"></div>
+            <div class="shape-slot" id="slot-1"></div>
+            <div class="shape-slot" id="slot-2"></div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <h2>No Moves Left!</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn" class="glow-btn">Play Again</button>
+            </div>
+        </div>
+        
+        <!-- Welcome Modal -->
+        <div id="start-modal" class="modal">
+            <div class="modal-content glass-panel">
+                <h2>Block Puzzle</h2>
+                <p>Drag shapes to the board. Fill lines to clear them!</p>
+                <button id="start-btn" class="glow-btn">Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: #faf8ef;
+    color: #776e65;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #776e65;
+    line-height: 1;
+}
+
+.subtitle {
+    margin-top: 5px;
+    font-size: 1rem;
+}
+
+.scores-container {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: #bbada0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    min-width: 80px;
+}
+
+.score-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #eee4da;
+    text-transform: uppercase;
+}
+
+.score-val {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.glow-btn {
+    background: #8f7a66;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    color: #f9f6f2;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.glow-btn:hover {
+    background: #9f8b77;
+    transform: translateY(-2px);
+}
+
+.glow-btn:active {
+    transform: translateY(1px);
+}
+
+/* Board */
+.game-board {
+    background: #bbada0;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    position: relative; /* important for absolute tiles */
+}
+
+/* Background grid cells */
+.grid-cell {
+    background: rgba(238, 228, 218, 0.35);
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+/* The actual sliding tiles */
+.tile {
+    position: absolute;
+    width: calc(25% - 12.5px); /* considering gaps and padding */
+    height: calc(25% - 12.5px);
+    background: #eee4da;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #776e65;
+    transition: 100ms ease-in-out;
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Animation for new tile */
+.tile-new {
+    animation: appear 200ms ease 100ms;
+    animation-fill-mode: backwards;
+}
+
+/* Animation for merged tile */
+.tile-merged {
+    animation: pop 200ms ease 100ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes appear {
+    0% { opacity: 0; transform: scale(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Colors based on value */
+.tile-2 { background: #eee4da; color: #776e65; font-size: 3.5rem; }
+.tile-4 { background: #ede0c8; color: #776e65; font-size: 3.5rem; }
+.tile-8 { background: #f2b179; color: #f9f6f2; font-size: 3.5rem; }
+.tile-16 { background: #f59563; color: #f9f6f2; font-size: 3rem; }
+.tile-32 { background: #f67c5f; color: #f9f6f2; font-size: 3rem; }
+.tile-64 { background: #f65e3b; color: #f9f6f2; font-size: 3rem; }
+.tile-128 { background: #edcf72; color: #f9f6f2; font-size: 2.5rem; box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55), inset 0 0 0 1px rgba(255,255,255,0.3); }
+.tile-256 { background: #edcc61; color: #f9f6f2; font-size: 2.5rem; box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.65), inset 0 0 0 1px rgba(255,255,255,0.4); }
+.tile-512 { background: #edc850; color: #f9f6f2; font-size: 2.5rem; box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.75), inset 0 0 0 1px rgba(255,255,255,0.5); }
+.tile-1024 { background: #edc53f; color: #f9f6f2; font-size: 2rem; box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.85), inset 0 0 0 1px rgba(255,255,255,0.6); }
+.tile-2048 { background: #edc22e; color: #f9f6f2; font-size: 2rem; box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.95), inset 0 0 0 1px rgba(255,255,255,0.7); }
+.tile-super { background: #3c3a32; color: #f9f6f2; font-size: 2rem; }
+
+/* Dynamic sizing for big numbers */
+@media screen and (max-width: 500px) {
+    .tile-2, .tile-4, .tile-8 { font-size: 2.5rem; }
+    .tile-16, .tile-32, .tile-64 { font-size: 2rem; }
+    .tile-128, .tile-256, .tile-512 { font-size: 1.5rem; }
+    .tile-1024, .tile-2048, .tile-super { font-size: 1.2rem; }
+}
+
+/* Modals */
+.modal {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(238, 228, 218, 0.73);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 100;
+}
+
+.modal.hidden { display: none; }
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.glass-panel h2 {
+    font-size: 3rem;
+    color: #776e65;
+    margin-bottom: 10px;
+}
+
+.glass-panel p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}

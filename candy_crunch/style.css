@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: radial-gradient(circle at 50% 50%, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, #ff0844, #ffb199);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 10px rgba(255, 8, 68, 0.3);
+}
+
+.score-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.score-label {
+    font-size: 0.8rem;
+    color: #ff0844;
+    font-weight: 700;
+}
+
+#score-display {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #333;
+}
+
+/* Board */
+.board-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-board {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255,255,255,0.6);
+}
+
+/* Candies */
+.candy {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.candy:active {
+    transform: scale(0.8);
+}
+
+.candy.crushing {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Candy Colors / Icons */
+.c-red { background: linear-gradient(135deg, #ff0844, #ffb199); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15); }
+.c-yellow { background: linear-gradient(135deg, #f6d365, #fda085); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15); }
+.c-orange { background: linear-gradient(135deg, #f83600, #f9d423); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15); }
+.c-purple { background: linear-gradient(135deg, #b224ef, #7579ff); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15); }
+.c-green { background: linear-gradient(135deg, #84fab0, #8fd3f4); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15); }
+.c-blue { background: linear-gradient(135deg, #4facfe, #00f2fe); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.15); }
+
+/* Modals */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+    width: 85%;
+    max-width: 350px;
+}
+
+.glass-panel h2 {
+    font-size: 2rem;
+    color: #ff0844;
+    margin-bottom: 10px;
+}
+
+.glow-btn {
+    background: linear-gradient(45deg, #ff0844, #ffb199);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 8, 68, 0.3);
+    margin-top: 20px;
+    transition: transform 0.2s;
+}
+
+.glow-btn:hover {
+    transform: scale(1.05);
+}

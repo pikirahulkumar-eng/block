@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Endless Car Racing</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hud">
+        <div class="score-box">
+            <span class="label">SCORE</span>
+            <span id="score">0</span>
+        </div>
+        <div class="score-box">
+            <span class="label">HIGH SCORE</span>
+            <span id="high-score">0</span>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <!-- The road and lines -->
+        <div class="road" id="road">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+            
+            <!-- Player Car -->
+            <div class="car player-car" id="player-car">
+                <div class="wheel wheel-tl"></div>
+                <div class="wheel wheel-tr"></div>
+                <div class="wheel wheel-bl"></div>
+                <div class="wheel wheel-br"></div>
+                <div class="car-body"></div>
+                <div class="windshield"></div>
+                <div class="headlight-l"></div>
+                <div class="headlight-r"></div>
+            </div>
+            
+            <!-- Enemy cars will be injected here via JS -->
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="start-screen" class="modal">
+        <div class="glass-panel">
+            <h1>SPEED RACER</h1>
+            <p>Use Left/Right Arrows or swipe to dodge traffic!</p>
+            <button id="start-btn" class="glow-btn">START ENGINE</button>
+        </div>
+    </div>
+
+    <div id="game-over-screen" class="modal hidden">
+        <div class="glass-panel crash-panel">
+            <h1 class="red-text">CRASHED!</h1>
+            <p>Score: <span id="final-score">0</span></p>
+            <p>Best: <span id="final-high-score">0</span></p>
+            <button id="restart-btn" class="glow-btn">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
