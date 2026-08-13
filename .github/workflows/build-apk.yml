@@ -27,14 +27,16 @@ jobs:
           java-version: '17'
 
       - name: Install npm dependencies
+        working-directory: block_native
         run: npm install
 
       - name: Run Expo Prebuild
+        working-directory: block_native
         # This automatically generates the native Android folder
         run: npx expo prebuild --platform android --clean
 
       - name: Build APK (Assemble Release)
-        working-directory: android
+        working-directory: block_native/android
         # This compiles the Android project into an APK
         run: ./gradlew assembleRelease
 
@@ -42,4 +44,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: block-game-release.apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: block_native/android/app/build/outputs/apk/release/app-release.apk
